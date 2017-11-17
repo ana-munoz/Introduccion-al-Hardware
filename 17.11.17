@@ -1,3 +1,5 @@
+//ana muñoz fuentes 19817247-2
+
 int retardo = 2000;
 int pinLed = 10;
 int estadoLed = 0;
