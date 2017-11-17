@@ -1,0 +1,16 @@
+int retardo = 2000;
+int pinLed = 10;
+int estadoLed = 0;
+
+void setup(){
+  pinMode(pinLed, OUTPUT);
+}
+
+void loop(){
+  cambioEstadoLed();
+  delay(retardo);
+}
+void cambioEstadoLed(){
+  estadoLed = ~estadoLed;
+  digitalWrite(pinLed, estadoLed);
+}
