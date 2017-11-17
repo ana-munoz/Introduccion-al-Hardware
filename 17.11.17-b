@@ -1,0 +1,21 @@
+int cambio, sec, vuelta, led;
+
+void setup(){
+  //pinMode(pinLed, OUTPUT);
+  DDRB = 0b111111;
+  Serial.begin(9600);
+}
+
+void loop(){
+  PINB = 0b111111;
+  cambioEstado(led);
+  delay(1000);
+  //PINB = 0;
+}
+
+void cambioEstado(int num){
+  cambio = 1<<(num-8); //mueve un 1 a la posición en que se encuentra el led que se quiere cambiar
+  //DDRB = (1<<(num-8))>>(num-8);
+  sec = (cambio & DDRB)>>(num-8); //opera con & entre variable cambio que tiene guardado el led que se quiere cambiar y la DDRB que tiene todos los led prendidos
+  vuelta = (~sec)<<(num-8); //niega la variable sec que contiene lo anterior y lo devuelve a su lugar
+}
