@@ -1,0 +1,67 @@
+/*CAVERNICOLO
+ int led1 = 8;
+int led2 = 9;
+int led3 = 10;
+int led4 = 11;
+int led5 = 12;
+int led6 = 13;*/
+
+/*LESS CAVERNICOLO
+int pin;*/
+
+void setup() {
+  /*CAVERNICOLO
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(led6, OUTPUT);*/
+  
+  /*LESS CAVERNICOLO
+   for(pin = 8; pin<14; pin++){
+   pinMode(pin, OUTPUT);
+  }*/
+  
+  /*DDR: I/O; I= 0; O=1; 
+  B: PUERTO 8 AL 13
+  C: ANALOG INPUT
+  D: PUERTO 0 AL 7*/
+  DDRB = 0b111111;
+}
+
+// the loop function runs over and over again forever
+void loop() {
+
+  /*CAVERNICOLO
+  digitalWrite(led1, HIGH);
+  digitalWrite(led2, HIGH);
+  digitalWrite(led3, HIGH);
+  digitalWrite(led4, HIGH);
+  digitalWrite(led5, HIGH);
+  digitalWrite(led6, HIGH);
+  delay(1000);
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+  digitalWrite(led4, LOW);
+  digitalWrite(led5, LOW);
+  digitalWrite(led6, LOW);
+  delay(1000);*/
+
+  /* LESS CAVERNICOLO
+  for(pin = 8; pin<14; pin++){
+    digitalWrite(pin, HIGH);
+  }
+  delay(1000);
+  for(pin = 8; pin<14; pin++){
+    digitalWrite(pin, LOW);
+  }
+  delay(1000);
+  */
+
+  /*The Port B Input Pins Register - read only*/
+  PINB = 0b111111;
+  delay(1000);
+  PINB = 0;
+}
