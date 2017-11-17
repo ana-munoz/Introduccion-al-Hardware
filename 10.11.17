@@ -1,0 +1,23 @@
+int a = 0b000001;
+void setup() {                                                                                                                                                          
+  // put your setup code here, to run once:
+  DDRB = 0b111111;
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  PORTB = 0b000001;
+
+  for(int i = 0; i<=4; i++){
+    a = a << 1;
+    PORTB = a;
+    
+    delay(250);  
+  }
+
+  for(int i = 0; i<5; i++){
+    a = a >> 1;
+    PORTB = a;
+    delay (250);
+  }
+}
