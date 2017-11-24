@@ -10,7 +10,9 @@ void setup() {
 void cambiaEstado(int num){
   num = num - 8;
   A = A<<num;
+  //A siempre es 1, :. si la posición ingresada es 1, cambia a 0. Caso contrario, cambia a 1.
   PORTB = PORTB ^ A;
+  //devuelve la posición cambiada a su ubicacion original
   A = A >> num;
 }
 
