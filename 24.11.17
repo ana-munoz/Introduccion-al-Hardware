@@ -1,0 +1,20 @@
+
+int A = 0b000001;
+int num = 8;
+
+void setup() {
+  DDRB = 0b111111;
+  PORTB = 0b111111;
+}
+
+void cambiaEstado(int num){
+  num = num - 8;
+  A = A<<num;
+  PORTB = PORTB ^ A;
+  A = A >> num;
+}
+
+void loop() {
+  cambiaEstado(num);
+  delay(500);
+}
