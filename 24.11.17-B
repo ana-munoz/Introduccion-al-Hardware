@@ -1,0 +1,42 @@
+/*LETRA  ASCII  MORSE 
+ASCII = 32 -> "espacio"*/
+
+/*int led1 = 7;
+int led2 = 8;*/
+
+String morseLetras[] = {
+".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", // a-i 
+".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", // j-r 
+"...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." // s-z
+};
+
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  /*pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);*/
+  Serial.begin(9600);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+
+  char ch; //almacena letras que llegan al arduino
+  int ch_valor;
+  if(Serial.available()){    //si existen datos, TRUE
+    ch = Serial.read(); //retorna un caracter que se almacena en ch
+    ch_valor = ch;      //codigo ascii de la letra
+    Serial.print(ch);
+    Serial.print(" ");
+    
+    Serial.print(ch_valor);
+    Serial.print(" ");
+    
+    if(ch_valor != 32){
+      Serial.println(morseLetras[ch_valor - 97]);
+    }
+    else{
+    Serial.println("espacio");
+    }
+  }
+  
+}
