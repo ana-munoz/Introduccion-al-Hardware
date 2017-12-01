@@ -1,0 +1,73 @@
+String morseLetras[] = {
+".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", // a-i 
+".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", // j-r 
+"...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." // s-z
+};
+
+int retardoPunto = 200;
+int retardoRaya  = retardoPunto*3;
+int retardoEspacio = retardoPunto*4;
+
+int pinMorse = 8;
+int pinEspacio = 7;
+
+void setup() {
+  pinMode(pinMorse, OUTPUT);
+  pinMode(pinEspacio, OUTPUT);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  char ch;
+  String ch_morse;
+  int ch_valor;
+  
+  if (Serial.available()){
+    ch = Serial.read();
+    ch_valor = ch;
+    Serial.print(ch);
+    Serial.print(" ");
+    if(ch_valor == 32){
+      Serial.println("Espacio");
+      parpadeoEspacio();
+    }
+    else{
+      ch_morse = morseLetras[ch_valor - 97];
+      Serial.println(ch_morse);
+      String secuenciaMorse = ch_morse;     
+      secuencia(secuenciaMorse);
+    }
+  }
+}
+
+
+void secuencia(String secuenciaMorse){
+  
+  int largo = secuenciaMorse.length();
+  for(int i=0; i<largo; i++){
+    char puntoRaya = secuenciaMorse[i];
+    parpadeoPuntoRaya(puntoRaya);
+  }
+}
+
+void parpadeoPuntoRaya(char puntoRaya){
+  digitalWrite(pinMorse, HIGH); 
+  if(puntoRaya == '.'){
+    delay(retardoPunto);
+    digitalWrite(pinMorse, LOW);
+    delay(retardoPunto);
+  }
+  else{
+    delay(retardoRaya);
+    digitalWrite(pinMorse, LOW);
+    delay(retardoRaya);
+  }
+}
+
+void parpadeoEspacio(){
+  
+  digitalWrite(pinEspacio,HIGH);
+  delay(retardoEspacio);
+  digitalWrite(pinEspacio, LOW);
+}
